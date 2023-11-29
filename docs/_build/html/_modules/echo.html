@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>echo &#8212; digit 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for echo</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python3 -u</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">ws_client</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">task</span> <span class="kn">import</span> <span class="o">*</span>
+
+<div class="viewcode-block" id="test_telemetry_udp"><a class="viewcode-back" href="../echo.html#echo.test_telemetry_udp">[docs]</a><span class="k">def</span> <span class="nf">test_telemetry_udp</span><span class="p">(</span><span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">subscriber_addr</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">subscriber_port</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">echo_time</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Testing Telemtry_UDP module...&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;subscribe to Telemetry_UDP with finger_width and joint position ...&quot;</span><span class="p">)</span>
+    <span class="n">result_1</span> <span class="o">=</span> <span class="n">call_method</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;subscribe_telemetry&quot;</span><span class="p">,</span>
+                           <span class="p">{</span><span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="n">subscriber_addr</span><span class="p">,</span> <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="n">subscriber_port</span><span class="p">,</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;q&quot;</span><span class="p">,</span> <span class="s2">&quot;finger_width&quot;</span><span class="p">]},</span><span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result_1</span><span class="p">[</span><span class="s2">&quot;result&quot;</span><span class="p">][</span><span class="s2">&quot;result&quot;</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;successfull subscribed.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error while subscribing: &quot;</span><span class="p">,</span> <span class="n">result_1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;receiving subscribed telemetry packages for next &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">echo_time</span><span class="p">)</span> <span class="o">+</span>  <span class="s2">&quot; seconds...&quot;</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="n">subscriber_addr</span><span class="p">,</span> <span class="n">subscriber_port</span><span class="p">))</span>
+    <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">received_pkgs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">    --Interrupt with ctrl+c--</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">,</span> <span class="n">adrr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">8192</span><span class="p">)</span>
+            <span class="n">received_pkgs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)))</span>
+            <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">&gt;</span> <span class="n">echo_time</span><span class="p">:</span>
+                <span class="k">break</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;received &quot;</span><span class="p">,</span> <span class="n">cnt</span><span class="p">,</span> <span class="s2">&quot; packages over last&quot;</span><span class="p">,</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">,</span> <span class="s2">&quot; seconds&quot;</span><span class="p">)</span>
+    <span class="n">pkg_validation_cnt</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">pkg</span> <span class="ow">in</span> <span class="n">received_pkgs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">pkg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tau_ext&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">False</span> <span class="ow">and</span> <span class="n">pkg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;q&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="n">pkg_validation_cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cnt</span> <span class="o">-</span> <span class="n">pkg_validation_cnt</span><span class="p">,</span> <span class="s2">&quot; package(s) are corrupted.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;unsubscribe...&quot;</span><span class="p">)</span>
+    <span class="n">result_2</span> <span class="o">=</span> <span class="n">call_method</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;unsubscribe_telemetry&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="n">subscriber_addr</span><span class="p">})</span>
+    <span class="k">if</span> <span class="n">result_2</span><span class="p">[</span><span class="s2">&quot;result&quot;</span><span class="p">][</span><span class="s2">&quot;result&quot;</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;successfull unsibscribed.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cnt</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Received no package. Test failed!&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">result_1</span><span class="p">[</span><span class="s2">&quot;result&quot;</span><span class="p">][</span><span class="s2">&quot;result&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">cnt</span> <span class="o">-</span> <span class="n">pkg_validation_cnt</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">result_2</span><span class="p">[</span><span class="s2">&quot;result&quot;</span><span class="p">][</span><span class="s2">&quot;result&quot;</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Everything works fine :)&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Test failed!&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../echo.html#echo.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Echo the input arguments to standard output&quot;&quot;&quot;</span>
+    <span class="n">sender</span> <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span>
+    <span class="n">receiver</span> <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span> <span class="c1"># IP address of your PC</span>
+    <span class="n">echo_time</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">test_telemetry_udp</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">receiver</span><span class="p">,</span> <span class="mi">8888</span><span class="p">,</span> <span class="n">echo_time</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span></div>
+
+<span class="c1"># if __name__ == &#39;__main__&#39;:</span>
+<span class="c1">#     sys.exit(main())</span>
+
+<div class="viewcode-block" id="send_start"><a class="viewcode-back" href="../echo.html#echo.send_start">[docs]</a><span class="k">def</span> <span class="nf">send_start</span><span class="p">():</span>
+    <span class="n">result_1</span> <span class="o">=</span> <span class="n">call_method</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;subscribe_telemetry&quot;</span><span class="p">,</span>
+                           <span class="p">{</span><span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">8888</span><span class="p">,</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;K_F_ext_K&quot;</span><span class="p">]},</span><span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="send_off"><a class="viewcode-back" href="../echo.html#echo.send_off">[docs]</a><span class="k">def</span> <span class="nf">send_off</span><span class="p">():</span>
+    <span class="n">result_2</span> <span class="o">=</span> <span class="n">call_method</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;unsubscribe_telemetry&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;localhost&quot;</span><span class="p">})</span></div>
+    
+<div class="viewcode-block" id="null_skill"><a class="viewcode-back" href="../echo.html#echo.null_skill">[docs]</a><span class="k">def</span> <span class="nf">null_skill</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;skill&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;t_max&quot;</span><span class="p">:</span><span class="n">x</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;control&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;control_mode&quot;</span><span class="p">:</span><span class="mi">1</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">Task</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">)</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">add_skill</span><span class="p">(</span><span class="s2">&quot;Hold&quot;</span><span class="p">,</span> <span class="s2">&quot;HoldPose&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">digit</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">src</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, yansong.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
