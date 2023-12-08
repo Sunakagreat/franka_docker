@@ -29,6 +29,7 @@ Docker is a containerization platform widely adopted in software development and
 
 ![](2.png)
   - Enter the page, which is the page to be connected.
+
 ![](4.png)
 
   - Start the MongoDb service  
@@ -72,6 +73,7 @@ Docker is a containerization platform widely adopted in software development and
 
   now the MongoDB service is active
   - Return to our open Studio 3T, click Test Connection in the lower left corner, you can see that the connection can be made, then click ok, and in the returned interface, name the connection, click save.
+  
   ![](5.png)
   - Connect to local Mongodbthe, click top left corner, our local MongoDb is shown here, click on it, and then connect
 
@@ -92,4 +94,3 @@ Docker is a containerization platform widely adopted in software development and
 ```bash
   docker compose up
   ```
-  
