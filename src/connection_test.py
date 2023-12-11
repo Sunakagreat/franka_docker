@@ -11,6 +11,9 @@ def get_robot_state(robot="localhost"):
     :return: The state of the robot
     :rtype: Any (replace with the actual type)
     """
+    
+    # TODO: add desciption for the return state 
+    
     return call_method(robot, 12000, "get_state")
 
 

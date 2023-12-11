@@ -32,8 +32,8 @@ pickJ = [1.62521114151198,
 
 #[0.999932578298823, -0.010526316515627295, -0.0021868741366545754, 0.0, -0.010513086326297987, -0.9999172533717611, 0.0059756444487183286, 0.0, -0.00224963801754845, -0.005952365365499018, -0.9999797540327232, 0.0, 0.43604286088473987, 0.37174356696230537, 0.014075713047352658, 1.0], 'error_message': '', 'grasped_object': 'NullObject', 'q': [0.8744786531329155, 0.6354851113625126, -0.15135975750376113, -2.084133865470237, 0.20442904366387257, 2.700332147236262, 1.3624367617699833] 4/24
 
-def gripper(width, force = 0.1):
-
+def grasp(width, force = 0.1):
+# TODO: add descriotion from libranka
     payload = {
         "width": width,
         "speed": 0.05,
@@ -45,6 +45,7 @@ def gripper(width, force = 0.1):
     return call_method(robot, 12000, "grasp", payload)
 
 def move_gripper(width):
+    # TODO, move release
     payload = {
         "width": width,
         "speed": 0.05,
@@ -61,7 +62,7 @@ def pick():
     moveJ(pickJ)
     move_to_location(robot, "pre1")
     move_to_location(robot, "pre2")
-    gripper(0.005)
+    grasp(0.005)
     call_method(robot, 12000, "set_grasped_object", {"object": "ring"})
     call_method(robot, 12000, "set_grasped_object", {"object": "ring"})
     time.sleep(0.2)
@@ -90,6 +91,8 @@ def modify_taught_pose(x, y, z, name:str):
     
 def moveJ(q_g):        
         """
+        # TODO
+        
         call mios for movign the lefthand to desired joint position
 
         Paramter

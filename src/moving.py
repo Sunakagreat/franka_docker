@@ -5,10 +5,12 @@ import numpy as np
 
 
 def teach_location(robot: str, location: str):
+    #TODO:
     call_method(robot, 12000, "teach_object", {"object": location})
 
 
 def move_to_location(robot: str, location: str):
+    #TODO:
     context = {
         "skill": {
             "p0":{
