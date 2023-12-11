@@ -12,12 +12,8 @@ services:
     cap_add:
       - SYS_NICE
     depends_on:
-      # - "ros"
       - "mongo"
-  #ros:
-   # image: "ros:noetic-ros-core"
-    #network_mode: "host"
-    #command: roscore
+
   mongo:
     image: "mongo:4.4.6"
     ports:
