@@ -77,6 +77,7 @@ def pick():
     # move_gripper(0.004)
 
 def modify_taught_pose(x, y, z, name:str):
+    # TODO
     payload = {
         "object": name,
         "data": {
@@ -85,6 +86,7 @@ def modify_taught_pose(x, y, z, name:str):
             "z": z,
             #"R": [0, 1, 0, 1, 0, 0, 0, 0, -1],
             "R": [1, 0, 0, 0, -1, 0, 0, 0, -1],
+        [1, 0 0 0 1 0 0 0 1]
         },
     }
     return call_method(robot, 12000, "set_partial_object_data", payload)

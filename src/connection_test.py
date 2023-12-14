@@ -6,6 +6,7 @@ import math
 
 def get_robot_state(robot="localhost"):
     """Get the state of the robot.
+    
     :param robot:The hostname or IP address of the robot, defaults to "localhost"
     :type robot: str, optional
     :return: The state of the robot
