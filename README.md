@@ -24,13 +24,13 @@ Docker is a containerization platform widely adopted in software development and
 * Install Mongodb https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/  
   - Open Studio 3T and click create a new connection
 
-![](3.png)
+![Local Image](./pic/3.png)
   - Click Manually configure my connection settings, then next
 
-![](2.png)
+![Local Image](./pic/2.png)
   - Enter the page, which is the page to be connected.
 
-![](4.png)
+![Local Image](./pic/4.png)
 
   - Start the MongoDb service  
   > Create a systemd service file:
@@ -69,19 +69,19 @@ Docker is a containerization platform widely adopted in software development and
   ```bash
   sudo service mongod status
   ```
-  ![](1.png)
+  ![Local Image](./pic/1.png)
 
   now the MongoDB service is active
   - Return to our open Studio 3T, click Test Connection in the lower left corner, you can see that the connection can be made, then click ok, and in the returned interface, name the connection, click save.
   
-  ![](5.png)
+  ![Local Image](./pic/5.png)
   - Connect to local Mongodbthe, click top left corner, our local MongoDb is shown here, click on it, and then connect
 
-  ![](6.png)
+  ![Local Image](./pic/6.png)
   The connection is now complete.
   - Edit the parameters, desk_name, desk_pwd, robot_ip
 
-   ![](7.png)
+  ![Local Image](./pic/7.png)
 # 3. Configuration
 * Copy the project from specific repository
 ```bash
