@@ -34,6 +34,21 @@ pickJ = [1.62521114151198,
 
 def grasp(width, force = 0.1):
 # TODO: add descriotion from libranka
+    """
+    Control the robot to perform a grasping operation.
+
+    Parameters:
+    - width: The width at which the gripper should open.
+    - force: The force to be applied during the grasping operation.
+
+    Returns:
+    The result of the grasping operation.
+
+    libranka description:
+    This function controls the robot to execute a grasping operation by calling the grasp method from libranka.
+    The gripper opens to the specified width and applies the specified force during the grasping process.
+    The parameters epsilon_inner and epsilon_outer define the precision of the grasping operation.
+    """
     payload = {
         "width": width,
         "speed": 0.05,
@@ -46,6 +61,19 @@ def grasp(width, force = 0.1):
 
 def move_gripper(width):
     # TODO, move release
+    """
+    Control the robot to move the gripper to a specified width.
+
+    Parameters:
+    - width: The target width for the gripper.
+
+    Returns:
+    The result of the gripper movement.
+
+    libranka description:
+    This function utilizes libranka to control the robot's gripper, moving it to the specified width.
+    The movement speed is set to 0.05 to ensure a controlled and gradual gripper motion.
+    """
     payload = {
         "width": width,
         "speed": 0.05,
@@ -86,7 +114,7 @@ def modify_taught_pose(x, y, z, name:str):
             "z": z,
             #"R": [0, 1, 0, 1, 0, 0, 0, 0, -1],
             "R": [1, 0, 0, 0, -1, 0, 0, 0, -1],
-        [1, 0 0 0 1 0 0 0 1]
+        #[1, 0, 0, 0, 1, 0, 0, 0, 1]
         },
     }
     return call_method(robot, 12000, "set_partial_object_data", payload)

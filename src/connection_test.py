@@ -9,7 +9,7 @@ def get_robot_state(robot="localhost"):
     
     :param robot:The hostname or IP address of the robot, defaults to "localhost"
     :type robot: str, optional
-    :return: The state of the robot
+    :return: The overall status of the robot, which is set to 'Idle' in this case.
     :rtype: Any (replace with the actual type)
     """
     
