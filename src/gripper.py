@@ -103,4 +103,4 @@ def pick():
     
     # time.sleep(3)
     # move_gripper(0.004)
-
+    # move_to_location(robot, "pre1")
