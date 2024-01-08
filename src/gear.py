@@ -106,6 +106,15 @@ def pick():
 
 def modify_taught_pose(x, y, z, name:str):
     # TODO
+    """
+    :param x: X-coordinate for the object's position.
+    :param y: Y-coordinate for the object's position.
+    :param z: Z-coordinate for the object's position.
+    :param name: A string representing the object's name.
+    
+    :return: The result of a method call to set_partial_object_data with the specified payload.
+
+    """
     payload = {
         "object": name,
         "data": {
@@ -119,9 +128,10 @@ def modify_taught_pose(x, y, z, name:str):
     }
     return call_method(robot, 12000, "set_partial_object_data", payload)
     
-def moveJ(q_g):        
+def moveJ(q_g):     
+        # TODO  
         """
-        # TODO
+        
         
         call mios for movign the lefthand to desired joint position
 

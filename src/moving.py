@@ -6,11 +6,25 @@ import numpy as np
 
 def teach_location(robot: str, location: str):
     #TODO:
+    """
+
+    :param robot: The robot object that will be taught the location.
+    :type robot: str
+    :param location: The name or identifier of the location to be taught.
+    :type location: str
+    """
     call_method(robot, 12000, "teach_object", {"object": location})
 
 
 def move_to_location(robot: str, location: str):
     #TODO:
+    """
+
+    :param robot: The robot object that will perform the movement.
+    :type robot: str
+    :param location: The name or identifier of the target location.
+    :type location: str
+    """
     context = {
         "skill": {
             "p0":{
