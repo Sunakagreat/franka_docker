@@ -79,11 +79,25 @@
 
 <div class="viewcode-block" id="teach_location"><a class="viewcode-back" href="../moving.html#moving.teach_location">[docs]</a><span class="k">def</span> <span class="nf">teach_location</span><span class="p">(</span><span class="n">robot</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="c1">#TODO:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param robot: The robot object that will be taught the location.</span>
+<span class="sd">    :type robot: str</span>
+<span class="sd">    :param location: The name or identifier of the location to be taught.</span>
+<span class="sd">    :type location: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">call_method</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;teach_object&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;object&quot;</span><span class="p">:</span> <span class="n">location</span><span class="p">})</span></div>
 
 
 <div class="viewcode-block" id="move_to_location"><a class="viewcode-back" href="../moving.html#moving.move_to_location">[docs]</a><span class="k">def</span> <span class="nf">move_to_location</span><span class="p">(</span><span class="n">robot</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="c1">#TODO:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param robot: The robot object that will perform the movement.</span>
+<span class="sd">    :type robot: str</span>
+<span class="sd">    :param location: The name or identifier of the target location.</span>
+<span class="sd">    :type location: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;skill&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;p0&quot;</span><span class="p">:{</span>

@@ -118,7 +118,17 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="gear.grasp">
 <span class="sig-prename descclassname"><span class="pre">gear.</span></span><span class="sig-name descname"><span class="pre">grasp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gear.html#grasp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gear.grasp" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Control the robot to perform a grasping operation.</p>
+<p>Parameters:
+- width: The width at which the gripper should open.
+- force: The force to be applied during the grasping operation.</p>
+<p>Returns:
+The result of the grasping operation.</p>
+<p>libranka description:
+This function controls the robot to execute a grasping operation by calling the grasp method from libranka.
+The gripper opens to the specified width and applies the specified force during the grasping process.
+The parameters epsilon_inner and epsilon_outer define the precision of the grasping operation.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="gear.in_100">
@@ -143,13 +153,25 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="gear.modify_taught_pose">
 <span class="sig-prename descclassname"><span class="pre">gear.</span></span><span class="sig-name descname"><span class="pre">modify_taught_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gear.html#modify_taught_pose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gear.modify_taught_pose" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – X-coordinate for the object’s position.</p></li>
+<li><p><strong>y</strong> – Y-coordinate for the object’s position.</p></li>
+<li><p><strong>z</strong> – Z-coordinate for the object’s position.</p></li>
+<li><p><strong>name</strong> – A string representing the object’s name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The result of a method call to set_partial_object_data with the specified payload.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="gear.moveJ">
 <span class="sig-prename descclassname"><span class="pre">gear.</span></span><span class="sig-name descname"><span class="pre">moveJ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q_g</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gear.html#moveJ"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gear.moveJ" title="Permalink to this definition"></a></dt>
-<dd><p># TODO</p>
-<p>call mios for movign the lefthand to desired joint position</p>
+<dd><p>call mios for movign the lefthand to desired joint position</p>
 <section id="paramter">
 <h2>Paramter<a class="headerlink" href="#paramter" title="Permalink to this heading"></a></h2>
 <p>q_g: list, len(7)</p>
@@ -159,7 +181,15 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="gear.move_gripper">
 <span class="sig-prename descclassname"><span class="pre">gear.</span></span><span class="sig-name descname"><span class="pre">move_gripper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gear.html#move_gripper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gear.move_gripper" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Control the robot to move the gripper to a specified width.</p>
+<p>Parameters:
+- width: The target width for the gripper.</p>
+<p>Returns:
+The result of the gripper movement.</p>
+<p>libranka description:
+This function utilizes libranka to control the robot’s gripper, moving it to the specified width.
+The movement speed is set to 0.05 to ensure a controlled and gradual gripper motion.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="gear.pick">
