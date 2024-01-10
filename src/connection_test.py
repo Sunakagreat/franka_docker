@@ -7,7 +7,7 @@ import math
 def get_robot_state(robot="localhost"):
     """Get the state of the robot.
     
-    :param robot:The hostname or IP address of the robot, defaults to "localhost"
+    :param robot: The hostname or IP address of the robot, defaults to "localhost"
     :type robot: str, optional
     :return: The overall status of the robot, which is set to 'Idle' in this case.
     :rtype: Any (replace with the actual type)
@@ -17,6 +17,10 @@ def get_robot_state(robot="localhost"):
     
     return call_method(robot, 12000, "get_state")
 
+
+def get_EE_pose()
+    
+def get_joint_state()
 
 def lock_robot(robot="localhost"):
     """Lock the robot.
