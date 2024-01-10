@@ -7,6 +7,7 @@ src
    connection_test
    echo
    gear
+   gripper
    moving
    task
    ws_client

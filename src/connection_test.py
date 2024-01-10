@@ -13,14 +13,18 @@ def get_robot_state(robot="localhost"):
     :rtype: Any (replace with the actual type)
     """
     
-    # TODO: add desciption for the return state 
+    # TODO: add desciption for the return state, the keys in the return dict
     
     return call_method(robot, 12000, "get_state")
 
 
-def get_EE_pose()
+def get_EE_pose():
+    # TODO
+    pass
     
-def get_joint_state()
+def get_joint_state():
+    # TODO
+    pass
 
 def lock_robot(robot="localhost"):
     """Lock the robot.
