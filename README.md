@@ -79,7 +79,7 @@ Docker is a containerization platform widely adopted in software development and
 
   ![Local Image](./pic/6.png)
   The connection is now complete.
-  - Edit the parameters, desk_name, desk_pwd, robot_ip
+  - Edit the parameters, only need to change the three Parameters: desk_name, desk_pwd and robot_ip, 
 
   ![Local Image](./pic/7.png)
 # 3. Configuration
