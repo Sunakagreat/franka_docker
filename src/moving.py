@@ -5,7 +5,7 @@ import numpy as np
 
 
 def teach_location(robot: str, location: str):
-    #TODO:
+    #TODO: @zewei write a small testing function which consists of teach_location & move_to_location
     """
 
     :param robot: The robot object that will be taught the location.
@@ -15,6 +15,17 @@ def teach_location(robot: str, location: str):
     """
     call_method(robot, 12000, "teach_object", {"object": location})
 
+def move_to_joint(robot: str, q_g: list):
+    # TODO: @zewei
+    parameters = {
+        "parameters": {
+        "pose": "NoneObject",
+        "q_g": q_g,
+        "speed": 0.5,
+        "acc": 0.7,        
+        }       
+    }
+    return start_task_and_wait(robot, "MoveToJointPose", parameters, False)
 
 def move_to_location(robot: str, location: str):
     #TODO:
