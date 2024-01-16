@@ -15,7 +15,7 @@ Docker is a containerization platform widely adopted in software development and
     sudo gpasswd -a $USER docker
   ```
   - Either do a `newgrp docker` or log out/in to activate the changes to groups.
-  - You can use
+  - Restart the computer, you can use
   ```bash
     docker run hello-world
   ```
@@ -56,9 +56,11 @@ Docker is a containerization platform widely adopted in software development and
     WantedBy=multi-user.target
 
   ```
+
+  <div style='display: none'>
   > Start the MongoDB service:
   ```bash
-   mongodsudo systemctl start mongod
+   sudo systemctl start mongod
   ```
   > Enable MongoDB to start on boot:
   ```bash
@@ -72,6 +74,7 @@ Docker is a containerization platform widely adopted in software development and
   ![Local Image](./pic/1.png)
 
   now the MongoDB service is active
+  </div>
   - Return to our open Studio 3T, click Test Connection in the lower left corner, you can see that the connection can be made, then click ok, and in the returned interface, name the connection, click save.
   
   ![Local Image](./pic/5.png)
