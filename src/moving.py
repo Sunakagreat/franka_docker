@@ -16,7 +16,16 @@ def teach_location(robot: str, location: str):
     call_method(robot, 12000, "teach_object", {"object": location})
 
 def move_to_joint(robot: str, q_g: list):
-    # TODO: @zewei
+    
+    """Move the robot to a specified joint configuration.
+
+    Parameters:
+    - robot (str): The identifier or name of the robot.
+    - q_g (list): The target joint configuration.
+
+    Returns:
+    The result of the movement operation.
+    """
     parameters = {
         "parameters": {
         "pose": "NoneObject",
@@ -28,7 +37,7 @@ def move_to_joint(robot: str, q_g: list):
     return start_task_and_wait(robot, "MoveToJointPose", parameters, False)
 
 def move_to_location(robot: str, location: str):
-    #TODO:
+    
     """
 
     :param robot: The robot object that will perform the movement.
@@ -60,6 +69,7 @@ def move_to_location(robot: str, location: str):
 
 
 def move_to_cart(robot, R, T):
+    #Here R is a 3x3 rotation matrix, T is a 3x1 translation vector
     call_method(robot, 12000, "teach_object", {"object": "tmp"})
     print(R)
     payload = {
@@ -94,3 +104,30 @@ def test_move_to_cart():
     goal = np.reshape(goal, (4,4))
     
     move_to_cart("localhost", goal[:3,:3], goal[3,:3])
+
+
+#def test_robot_movement():
+    #robot_object = "Robot1"  # Replace with the actual robot object or identifier
+
+    # Teach a location
+    #location_to_teach = "Kitchen"  # Replace with the location you want to teach
+    #teach_location(robot_object, location_to_teach)
+
+    # Move to the taught location
+    #target_location = "Kitchen"  # Replace with the location you want to move to
+    #move_to_location(robot_object, target_location)
+
+# Call the testing function
+#test_robot_movement()
+    
+def test_robot_movement(robot: str, location1: str, location2: str):
+    # Teach a location1
+    teach_location(robot, location2)
+    #call_method(robot, 12000, "teach_object", {"object": location2})
+
+    # Teach a location2
+    #teach_location(robot, location2)
+    #call_method(robot, 12000, "teach_object", {"object": location2})
+    # Move to the taught location
+    move_to_location(robot, location1)
+
