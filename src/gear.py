@@ -129,15 +129,18 @@ def modify_taught_pose(x, y, z, name:str):
     return call_method(robot, 12000, "set_partial_object_data", payload)
     
 def moveJ(q_g):     
-        # TODO  
+         
         """
-        
-        
-        call mios for movign the lefthand to desired joint position
+        Move the robot to a specified joint pose.
 
-        Paramter
-        --------
-        q_g: list, len(7)
+        Args:
+        q_g (list): Joint pose.
+        robot: The robot object.
+
+        Returns:
+        The result of the movement task.
+        
+        
         """
         parameters = {
             "parameters": {

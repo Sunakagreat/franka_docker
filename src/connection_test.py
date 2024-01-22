@@ -66,7 +66,7 @@ def get_joint_state(robot="localhost"):
     :param robot: The hostname or IP address of the robot. Defaults to "localhost".
     :type robot: str, optional
 
-    :return: The joint positions or angles of the robot.
+    :return: The joint positions 
     :rtype: list
     """
     robot_state = get_robot_state(robot)

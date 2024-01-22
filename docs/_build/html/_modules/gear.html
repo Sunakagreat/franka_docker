@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>gear &mdash; pymios 1.0 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=359c27e9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -104,7 +106,7 @@
 <span class="c1">#[0.999932578298823, -0.010526316515627295, -0.0021868741366545754, 0.0, -0.010513086326297987, -0.9999172533717611, 0.0059756444487183286, 0.0, -0.00224963801754845, -0.005952365365499018, -0.9999797540327232, 0.0, 0.43604286088473987, 0.37174356696230537, 0.014075713047352658, 1.0], &#39;error_message&#39;: &#39;&#39;, &#39;grasped_object&#39;: &#39;NullObject&#39;, &#39;q&#39;: [0.8744786531329155, 0.6354851113625126, -0.15135975750376113, -2.084133865470237, 0.20442904366387257, 2.700332147236262, 1.3624367617699833] 4/24</span>
 
 <div class="viewcode-block" id="grasp"><a class="viewcode-back" href="../gear.html#gear.grasp">[docs]</a><span class="k">def</span> <span class="nf">grasp</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">force</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">):</span>
-<span class="c1"># TODO: add descriotion from libranka</span>
+
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Control the robot to perform a grasping operation.</span>
 
@@ -131,7 +133,7 @@
     <span class="k">return</span> <span class="n">call_method</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;grasp&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="move_gripper"><a class="viewcode-back" href="../gear.html#gear.move_gripper">[docs]</a><span class="k">def</span> <span class="nf">move_gripper</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
-    <span class="c1"># TODO, move release</span>
+
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Control the robot to move the gripper to a specified width.</span>
 
@@ -176,15 +178,15 @@
     <span class="c1"># move_gripper(0.004)</span>
 
 <div class="viewcode-block" id="modify_taught_pose"><a class="viewcode-back" href="../gear.html#gear.modify_taught_pose">[docs]</a><span class="k">def</span> <span class="nf">modify_taught_pose</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
-    <span class="c1"># TODO</span>
+<span class="w">    </span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    :param x: X-coordinate for the object&#39;s position.</span>
 <span class="sd">    :param y: Y-coordinate for the object&#39;s position.</span>
 <span class="sd">    :param z: Z-coordinate for the object&#39;s position.</span>
 <span class="sd">    :param name: A string representing the object&#39;s name.</span>
 <span class="sd">    </span>
-<span class="sd">    :return: The result of a method call to set_partial_object_data with the specified payload.</span>
-
+<span class="sd">    :return: The result of the modify_taught_pose operation.</span>
+<span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;object&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
@@ -200,15 +202,18 @@
     <span class="k">return</span> <span class="n">call_method</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;set_partial_object_data&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span></div>
     
 <div class="viewcode-block" id="moveJ"><a class="viewcode-back" href="../gear.html#gear.moveJ">[docs]</a><span class="k">def</span> <span class="nf">moveJ</span><span class="p">(</span><span class="n">q_g</span><span class="p">):</span>     
-        <span class="c1"># TODO  </span>
+<span class="w">         </span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        </span>
-<span class="sd">        </span>
-<span class="sd">        call mios for movign the lefthand to desired joint position</span>
+<span class="sd">        Move the robot to a specified joint pose.</span>
 
-<span class="sd">        Paramter</span>
-<span class="sd">        --------</span>
-<span class="sd">        q_g: list, len(7)</span>
+<span class="sd">        Args:</span>
+<span class="sd">        q_g (list): Joint pose.</span>
+<span class="sd">        robot: The robot object.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        The result of the movement task.</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>

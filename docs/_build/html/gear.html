@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>gear module &mdash; pymios 1.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=359c27e9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="moving module" href="moving.html" />
+    <link rel="next" title="gripper module" href="gripper.html" />
     <link rel="prev" title="echo module" href="echo.html" /> 
 </head>
 
@@ -64,8 +66,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#gear.tilt_back_wall"><code class="docutils literal notranslate"><span class="pre">tilt_back_wall()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="gripper.html">gripper module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moving.html">moving module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="task.html">task module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ws_client.html">ws_client module</a></li>
 </ul>
 </li>
@@ -161,7 +165,7 @@ The parameters epsilon_inner and epsilon_outer define the precision of the grasp
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The result of a method call to set_partial_object_data with the specified payload.</p>
+<dd class="field-even"><p>The result of the modify_taught_pose operation.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -169,11 +173,12 @@ The parameters epsilon_inner and epsilon_outer define the precision of the grasp
 <dl class="py function">
 <dt class="sig sig-object py" id="gear.moveJ">
 <span class="sig-prename descclassname"><span class="pre">gear.</span></span><span class="sig-name descname"><span class="pre">moveJ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q_g</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gear.html#moveJ"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gear.moveJ" title="Permalink to this definition"></a></dt>
-<dd><p>call mios for movign the lefthand to desired joint position</p>
-<section id="paramter">
-<h2>Paramter<a class="headerlink" href="#paramter" title="Permalink to this heading"></a></h2>
-<p>q_g: list, len(7)</p>
-</section>
+<dd><p>Move the robot to a specified joint pose.</p>
+<p>Args:
+q_g (list): Joint pose.
+robot: The robot object.</p>
+<p>Returns:
+The result of the movement task.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -211,7 +216,7 @@ The movement speed is set to 0.05 to ensure a controlled and gradual gripper mot
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="echo.html" class="btn btn-neutral float-left" title="echo module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="moving.html" class="btn btn-neutral float-right" title="moving module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="gripper.html" class="btn btn-neutral float-right" title="gripper module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

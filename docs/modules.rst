@@ -10,4 +10,5 @@ src
    gripper
    moving
    task
+   test
    ws_client
