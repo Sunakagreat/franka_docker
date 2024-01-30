@@ -106,32 +106,6 @@ def test_move_to_cart():
     move_to_cart("localhost", goal[:3,:3], goal[3,:3])
 
 
-#def test_robot_movement():
-    #robot_object = "Robot1"  # Replace with the actual robot object or identifier
-
-    # Teach a location
-    #location_to_teach = "Kitchen"  # Replace with the location you want to teach
-    #teach_location(robot_object, location_to_teach)
-
-    # Move to the taught location
-    #target_location = "Kitchen"  # Replace with the location you want to move to
-    #move_to_location(robot_object, target_location)
-
-# Call the testing function
-#test_robot_movement()
-    
-#def test_robot_movement(robot: str, location1: str, location2: str):
-    # Teach a location1
-    #teach_location(robot, location1)
-    #call_method(robot, 12000, "teach_object", {"object": location2})
-
-    # Teach a location2
-    #teach_location(robot, location2)
-    #call_method(robot, 12000, "teach_object", {"object": location2})
-    # Move to the taught location
-    #move_to_location(robot, location1)
-    #move_to_location(robot, location2)
-
 def teach_location_with_pause(robot: str, location: str):
     # Display a message and wait for user input
     input("Please move the robot and press Enter to continue...")
@@ -139,14 +113,10 @@ def teach_location_with_pause(robot: str, location: str):
     # Execute the operation to teach the robot location
     teach_location(robot, location)  # Placeholder for the teach_location function
 
-
-
+# This function has combined the function of the teach_location and move_to_location function
 def test_robot_movement(robot: str, location1: str, location2: str):
     # Teach the robot location1 with a pause
     teach_location_with_pause(robot, location1)
-
-    # Display a message and wait for user input (e.g., to press the lock button)
-    #input("Please press the lock button or perform any necessary actions, and then press Enter to continue...")
 
     # Teach the robot location2 with a pause
     teach_location_with_pause(robot, location2)

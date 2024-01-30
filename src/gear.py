@@ -155,16 +155,16 @@ def moveJ(q_g):
 
 def insertion():
     print(call_method(robot, 12000, "get_state"))
-    call_method(robot, 12000, "set_grasped_object", {"object": "hex1"})
+    call_method(robot, 12000, "set_grasped_object", {"object": "obj1"})
     content = {
         "skill": {
             "objects": {
                 # "Container": "hole",
                 # "Approach": "app1",
                 # "Insertable": "hex1"
-                "Container": "hex1_hole_e",
-                "Approach": "hex1_app_e",
-                "Insertable": "hex1"                
+                "Container": "container",
+                "Approach": "approach",
+                "Insertable": "obj1"                
             },
             "time_max": 10,
             "p0": {
