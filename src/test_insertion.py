@@ -343,4 +343,7 @@ def extract_skill():
     time.sleep(0.1)
     result = t.wait()
     print("Result: " + str(result))
+
+
+
     
