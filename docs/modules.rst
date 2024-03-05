@@ -12,3 +12,5 @@ src
    task
    test
    ws_client
+   test_insertion
+   new_insertion_test

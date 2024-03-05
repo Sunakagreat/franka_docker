@@ -228,16 +228,16 @@
 
 <div class="viewcode-block" id="insertion"><a class="viewcode-back" href="../gear.html#gear.insertion">[docs]</a><span class="k">def</span> <span class="nf">insertion</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">call_method</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;get_state&quot;</span><span class="p">))</span>
-    <span class="n">call_method</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;set_grasped_object&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;object&quot;</span><span class="p">:</span> <span class="s2">&quot;hex1&quot;</span><span class="p">})</span>
+    <span class="n">call_method</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;set_grasped_object&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;object&quot;</span><span class="p">:</span> <span class="s2">&quot;obj1&quot;</span><span class="p">})</span>
     <span class="n">content</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;skill&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;objects&quot;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="c1"># &quot;Container&quot;: &quot;hole&quot;,</span>
                 <span class="c1"># &quot;Approach&quot;: &quot;app1&quot;,</span>
                 <span class="c1"># &quot;Insertable&quot;: &quot;hex1&quot;</span>
-                <span class="s2">&quot;Container&quot;</span><span class="p">:</span> <span class="s2">&quot;hex1_hole_e&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;Approach&quot;</span><span class="p">:</span> <span class="s2">&quot;hex1_app_e&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;Insertable&quot;</span><span class="p">:</span> <span class="s2">&quot;hex1&quot;</span>                
+                <span class="s2">&quot;Container&quot;</span><span class="p">:</span> <span class="s2">&quot;container&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Approach&quot;</span><span class="p">:</span> <span class="s2">&quot;approach&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Insertable&quot;</span><span class="p">:</span> <span class="s2">&quot;obj1&quot;</span>                
             <span class="p">},</span>
             <span class="s2">&quot;time_max&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
             <span class="s2">&quot;p0&quot;</span><span class="p">:</span> <span class="p">{</span>

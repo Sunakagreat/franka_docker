@@ -179,32 +179,6 @@
     <span class="n">move_to_cart</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">goal</span><span class="p">[:</span><span class="mi">3</span><span class="p">,:</span><span class="mi">3</span><span class="p">],</span> <span class="n">goal</span><span class="p">[</span><span class="mi">3</span><span class="p">,:</span><span class="mi">3</span><span class="p">])</span></div>
 
 
-<span class="c1">#def test_robot_movement():</span>
-    <span class="c1">#robot_object = &quot;Robot1&quot;  # Replace with the actual robot object or identifier</span>
-
-    <span class="c1"># Teach a location</span>
-    <span class="c1">#location_to_teach = &quot;Kitchen&quot;  # Replace with the location you want to teach</span>
-    <span class="c1">#teach_location(robot_object, location_to_teach)</span>
-
-    <span class="c1"># Move to the taught location</span>
-    <span class="c1">#target_location = &quot;Kitchen&quot;  # Replace with the location you want to move to</span>
-    <span class="c1">#move_to_location(robot_object, target_location)</span>
-
-<span class="c1"># Call the testing function</span>
-<span class="c1">#test_robot_movement()</span>
-    
-<span class="c1">#def test_robot_movement(robot: str, location1: str, location2: str):</span>
-    <span class="c1"># Teach a location1</span>
-    <span class="c1">#teach_location(robot, location1)</span>
-    <span class="c1">#call_method(robot, 12000, &quot;teach_object&quot;, {&quot;object&quot;: location2})</span>
-
-    <span class="c1"># Teach a location2</span>
-    <span class="c1">#teach_location(robot, location2)</span>
-    <span class="c1">#call_method(robot, 12000, &quot;teach_object&quot;, {&quot;object&quot;: location2})</span>
-    <span class="c1"># Move to the taught location</span>
-    <span class="c1">#move_to_location(robot, location1)</span>
-    <span class="c1">#move_to_location(robot, location2)</span>
-
 <div class="viewcode-block" id="teach_location_with_pause"><a class="viewcode-back" href="../moving.html#moving.teach_location_with_pause">[docs]</a><span class="k">def</span> <span class="nf">teach_location_with_pause</span><span class="p">(</span><span class="n">robot</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="c1"># Display a message and wait for user input</span>
     <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please move the robot and press Enter to continue...&quot;</span><span class="p">)</span>
@@ -212,14 +186,10 @@
     <span class="c1"># Execute the operation to teach the robot location</span>
     <span class="n">teach_location</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span>  <span class="c1"># Placeholder for the teach_location function</span></div>
 
-
-
+<span class="c1"># This function has combined the function of the teach_location and move_to_location function</span>
 <div class="viewcode-block" id="test_robot_movement"><a class="viewcode-back" href="../moving.html#moving.test_robot_movement">[docs]</a><span class="k">def</span> <span class="nf">test_robot_movement</span><span class="p">(</span><span class="n">robot</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location2</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="c1"># Teach the robot location1 with a pause</span>
     <span class="n">teach_location_with_pause</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">location1</span><span class="p">)</span>
-
-    <span class="c1"># Display a message and wait for user input (e.g., to press the lock button)</span>
-    <span class="c1">#input(&quot;Please press the lock button or perform any necessary actions, and then press Enter to continue...&quot;)</span>
 
     <span class="c1"># Teach the robot location2 with a pause</span>
     <span class="n">teach_location_with_pause</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">location2</span><span class="p">)</span>
