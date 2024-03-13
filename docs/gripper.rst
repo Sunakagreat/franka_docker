@@ -2,6 +2,6 @@ gripper module
 ==============
 
 .. automodule:: gripper
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

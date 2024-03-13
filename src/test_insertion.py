@@ -359,24 +359,56 @@ class Insertion:
       self.object_id = object_id
       self.time_max = 10  # 默认值
         # 如果需要，为p2和其他参数定义默认值
-     
+      self.search_a = [4, 6, 15, 0, 0, 0]
+      self.search_f =  [1.2, 1.2, 0, 1.2, 1, 0]
+      self.search_phi = [0, math.pi/2, 0, 0, 0, 0]
+      self.K_x = [1000, 1000, 1000, 100, 100, 100]
+      self.f_push = [0, 0, 15, 0, 0, 0]
+      self.env_X = [0.01, 0.01, 0.002, 0.05, 0.05, 0.05]
+      self.F_ext_contact = [2.0, 1.0]
+    
+    #First run the prepare function to set the initial state of the robot
+    def prepare(self,robot: str, approach: str, obj1: str,container: str):
 
-    def prepare(self):
-        pass
+        input("Please move the robot to the approach position and press Enter to continue...")
+        teach_location("localhost", "approach")
+
+        input("Please move the robot to the object position and press Enter to continue...")
+        teach_location("localhost", "obj1")
+        
+        input("Please move the robot to the container position and press Enter to continue...")
+        teach_location("localhost", "container")
 
     def modify_time(self, time_max):
-     self.time_max = time_max
+        self.time_max = time_max
      # print(f"修改后的最大时间为：{self.time_max}")
-        
+    
+    def modify_search_amplitudes(self,search_a):
+        self.search_a = search_a
+    
+    def modify_F_ext_contact(self,F_ext_contact):
+        self.F_ext_contact = F_ext_contact
+    
+    #def modify_search_phi(self,search_phi):
+     #   self.search_phi= search_phi
+    
+    #def modify_K_x(self,K_x):
+     #   self.K_x= K_x
 
-    def modify_lissajous(self):
-        pass
+    def modify_f_push(self,f_push):
+        self.f_pushx = f_push    
 
-    def modify_succ_condition(self):
-        pass
+    def modify_lissajous(self,search_phi):
+        self.search_phi = search_phi
 
-    def modify_stiffness(self):
-        pass
+    def modify_succ_condition(self,env_X):
+        self.env_X = env_X
+
+    def modify_stiffness(self,K_x):
+        self.K_x = K_x
+    
+    def modify_stiffness(self,K_x):
+        self.K_x = K_x
 
     def execute(self):
         print(call_method(self.robot, 12000, "get_state"))
@@ -401,14 +433,14 @@ class Insertion:
                 "K_x": [500, 500, 500, 100, 100, 100]
                 },
                 "p2": {
-                     "search_a": [4, 6, 15, 0, 0, 0],
+                     "search_a": self.search_a,
                 # "search_a": [5, 5, 0, 2, 2, 0],
-                "search_f": [1.2, 1.2, 0, 1.2, 1, 0],
+                "search_f": self.search_f,
                 # "search_a": [0, 0, 0, 0, 0, 0],
                 # "search_f": [0, 0, 0, 0, 0, 0],
-                "search_phi": [0, math.pi/2, 0, 0, 0, 0],
-                "K_x": [1000, 1000, 1000, 100, 100, 100],
-                "f_push": [0, 0, 15, 0, 0, 0],
+                "search_phi": self.search_phi,
+                "K_x": self.K_x,
+                "f_push": self.f_push,
                 "dX_d": [0.1, 0.5],
                 "ddX_d": [0.5, 1]
                 },
@@ -422,9 +454,9 @@ class Insertion:
             "control": {
                 "control_mode": 0
             },
-            "user": {"env_X": [0.01, 0.01, 0.002, 0.05, 0.05, 0.05],
+            "user": {"env_X": self.env_X,
             "env_dX": [0.001, 0.001, 0.001, 0.005, 0.005, 0.005],
-            "F_ext_contact": [2.0, 1.0]
+            "F_ext_contact": self.F_ext_contact
                 
             }
         }
@@ -436,9 +468,9 @@ class Insertion:
         print("Result：", str(result))
         return result
     
-def execute():
-    insertion_instance = Insertion(robot, "obj1")
-    insertion_instance.execute()
+#def execute():
+   # insertion_instance = Insertion(robot, "obj1")
+    #insertion_instance.execute()
     # print("全局execute函数调用完成")
 
     #def modify_time(time_max):

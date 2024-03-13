@@ -9,8 +9,8 @@ src
    gear
    gripper
    moving
+   new_insertion_test
    task
    test
-   ws_client
    test_insertion
-   new_insertion_test
+   ws_client

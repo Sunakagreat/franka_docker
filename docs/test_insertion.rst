@@ -1,7 +1,7 @@
-test module
-===========
+test\_insertion module
+======================
 
 .. automodule:: test_insertion
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
