@@ -366,6 +366,7 @@ class Insertion:
       self.f_push = [0, 0, 15, 0, 0, 0]
       self.env_X = [0.01, 0.01, 0.002, 0.05, 0.05, 0.05]
       self.F_ext_contact = [2.0, 1.0]
+      self.prepared = False  # New attribute to track whether prepare has been executed
     
     #First run the prepare function to set the initial state of the robot
     def prepare(self,robot: str, approach: str, obj1: str,container: str):
@@ -378,10 +379,11 @@ class Insertion:
         
         input("Please move the robot to the container position and press Enter to continue...")
         teach_location("localhost", "container")
-
+        self.prepared = True
+        print("Prepare method has been executed.")
     def modify_time(self, time_max):
         self.time_max = time_max
-     # print(f"修改后的最大时间为：{self.time_max}")
+    
     
     def modify_search_amplitudes(self,search_a):
         self.search_a = search_a
@@ -411,6 +413,12 @@ class Insertion:
         self.K_x = K_x
 
     def execute(self):
+        # Check if prepare has been executed before proceeding with any other logic
+        if not self.prepared:
+            print("Error: Please execute the prepare method before executing.")
+            return
+        # Content of the original execute method
+        print("Executing the task...")
         print(call_method(self.robot, 12000, "get_state"))
         call_method(self.robot, 12000, "set_grasped_object", {"object": self.object_id})
         content = {
