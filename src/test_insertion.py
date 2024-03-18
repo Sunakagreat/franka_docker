@@ -214,6 +214,7 @@ def insertion():
                 "ddX_d": [0.5, 0.1], # This is a list of length 2, indicating the target accelerations of the robot end-effector in the X and Y directions during the insertion action. In this example, ddX_d is [0.5, 0.1], indicating a target acceleration of 0.5 meters per second squared in the X direction and 0.1 meters per second squared in the Y direction.
                 "K_x": [500, 500, 500, 100, 100, 100] # This is a list of length 6, representing the control gains during the insertion action. Here, K_x is [500, 500, 500, 100, 100, 100], indicating control gains of 500 in the X, Y, and Z directions and 100 in rotation directions. These gains are used to adjust the stability and accuracy of the robot during the insertion action.
             },
+            # p2: the third mp, indicating the insertion
             "p2": {
                 "search_a": [4, 6, 15, 0, 0, 0], # This is a list of length 6, representing the search amplitudes during the insertion action. It determines the range of motion or deviation allowed during the insertion process. For example, [4, 6, 15, 0, 0, 0] implies that there's a search amplitude of 4 in the X direction, 6 in the Y direction, and 15 in the Z direction, while no search amplitude is specified for rotation.
                 # "search_a": [5, 5, 0, 2, 2, 0],
@@ -226,6 +227,7 @@ def insertion():
                 "dX_d": [0.1, 0.5], # This is a list of length 2, similar to previous instances, indicating the target translation velocities of the robot end-effector in the X and Y directions during the insertion action.
                 "ddX_d": [0.5, 1] # This is a list of length 2, similar to previous instances, indicating the target accelerations of the robot end-effector in the X and Y directions during the insertion action.
             },
+            # p3: not used
             "p3": {
                 "dX_d": [0.1, 0.5], # This is a list of length 2, indicating the target translation velocities of the robot end-effector in the X and Y directions during the insertion action. It specifies the desired linear velocity for the insertion task. Here, [0.1, 0.5] suggests a target velocity of 0.1 meters per second in the X direction and 0.5 meters per second in the Y direction.
                 "ddX_d": [0.5, 1], # This is a list of length 2, indicating the target accelerations of the robot end-effector in the X and Y directions during the insertion action. It specifies the desired linear acceleration for the insertion task. For instance, [0.5, 1] implies a target acceleration of 0.5 meters per second squared in the X direction and 1 meter per second squared in the Y direction.
@@ -236,6 +238,7 @@ def insertion():
         "control": {
             "control_mode": 0
         },
+        # user: Limited conditions to determine whether the Insertion execution is successful, such as position and velocity tolerances, and maximum contact forces
         "user": {
             "env_X": [0.01, 0.01, 0.002, 0.05, 0.05, 0.05], # This parameter is a list of length 6, representing the environmental conditions related to position in the X, Y, and Z directions. It specifies the position tolerances or variations allowed in the environment. For example, [0.01, 0.01, 0.002, 0.05, 0.05, 0.05] indicates tolerance values of 0.01 meters in the X and Y directions, 0.002 meters in the Z direction, and 0.05 meters for rotation.
             "env_dX": [0.001, 0.001, 0.001, 0.005, 0.005, 0.005], # This parameter is a list of length 6, similar to env_X, but it represents the environmental conditions related to velocity. It specifies the allowed velocity variations or tolerances in the environment. For instance, [0.001, 0.001, 0.001, 0.005, 0.005, 0.005] suggests velocity tolerance values of 0.001 meters per second in the X, Y, and Z directions, and 0.005 meters per second for rotation.
@@ -352,7 +355,7 @@ def extract_skill():
 
 
 class Insertion:
-    a = None
+    #a = None
 
     def __init__(self, robot, object_id="obj1"):
       self.robot = robot
@@ -381,6 +384,7 @@ class Insertion:
         teach_location("localhost", "container")
         self.prepared = True
         print("Prepare method has been executed.")
+
     def modify_time(self, time_max):
         self.time_max = time_max
     
