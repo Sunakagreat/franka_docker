@@ -1,5 +1,6 @@
 from task import *
 from moving import *
+from connection_test import *
 import time
 import math
 
@@ -360,8 +361,8 @@ class Insertion:
     def __init__(self, robot, object_id="obj1"):
       self.robot = robot
       self.object_id = object_id
-      self.time_max = 10  # 默认值
-        # 如果需要，为p2和其他参数定义默认值
+      self.time_max = 10  
+        
       self.search_a = [4, 6, 15, 0, 0, 0]
       self.search_f =  [1.2, 1.2, 0, 1.2, 1, 0]
       self.search_phi = [0, math.pi/2, 0, 0, 0, 0]
@@ -480,12 +481,4 @@ class Insertion:
         print("Result：", str(result))
         return result
     
-#def execute():
-   # insertion_instance = Insertion(robot, "obj1")
-    #insertion_instance.execute()
-    # print("全局execute函数调用完成")
 
-    #def modify_time(time_max):
-     #   insertion_instance = Insertion(robot, "obj1")
-      #  insertion_instance.modify_time(time_max)
-        # print("全局modify_time函数调用完成")
