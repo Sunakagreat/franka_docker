@@ -77,7 +77,7 @@ def get_joint_state(robot="localhost"):
     return joint_state
 
 def lock_robot(robot="localhost"):
-    """Lock the robot.
+    """Lock the robot_gripper.
 
     :param robot: The hostname or IP address of the robot, defaults to "localhost"
     :type robot: str, optional
@@ -87,7 +87,7 @@ def lock_robot(robot="localhost"):
     return call_method(robot, 12000, "lock_brakes")
 
 def unlock_robot(robot="localhost"):
-    """Unlock the robot.
+    """Unlock the robot_gripper.
 
     :param robot: The hostname or IP address of the robot, defaults to "localhost"
     :type robot: str, optional

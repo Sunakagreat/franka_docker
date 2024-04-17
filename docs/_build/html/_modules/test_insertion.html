@@ -73,6 +73,7 @@
   <h1>Source code for test_insertion</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">task</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">moving</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">connection_test</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">math</span>
 
@@ -287,6 +288,7 @@
                 <span class="s2">&quot;ddX_d&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="c1"># This is a list of length 2, indicating the target accelerations of the robot end-effector in the X and Y directions during the insertion action. In this example, ddX_d is [0.5, 0.1], indicating a target acceleration of 0.5 meters per second squared in the X direction and 0.1 meters per second squared in the Y direction.</span>
                 <span class="s2">&quot;K_x&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span> <span class="c1"># This is a list of length 6, representing the control gains during the insertion action. Here, K_x is [500, 500, 500, 100, 100, 100], indicating control gains of 500 in the X, Y, and Z directions and 100 in rotation directions. These gains are used to adjust the stability and accuracy of the robot during the insertion action.</span>
             <span class="p">},</span>
+            <span class="c1"># p2: the third mp, indicating the insertion</span>
             <span class="s2">&quot;p2&quot;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">&quot;search_a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="c1"># This is a list of length 6, representing the search amplitudes during the insertion action. It determines the range of motion or deviation allowed during the insertion process. For example, [4, 6, 15, 0, 0, 0] implies that there&#39;s a search amplitude of 4 in the X direction, 6 in the Y direction, and 15 in the Z direction, while no search amplitude is specified for rotation.</span>
                 <span class="c1"># &quot;search_a&quot;: [5, 5, 0, 2, 2, 0],</span>
@@ -299,6 +301,7 @@
                 <span class="s2">&quot;dX_d&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="c1"># This is a list of length 2, similar to previous instances, indicating the target translation velocities of the robot end-effector in the X and Y directions during the insertion action.</span>
                 <span class="s2">&quot;ddX_d&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="c1"># This is a list of length 2, similar to previous instances, indicating the target accelerations of the robot end-effector in the X and Y directions during the insertion action.</span>
             <span class="p">},</span>
+            <span class="c1"># p3: not used</span>
             <span class="s2">&quot;p3&quot;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">&quot;dX_d&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="c1"># This is a list of length 2, indicating the target translation velocities of the robot end-effector in the X and Y directions during the insertion action. It specifies the desired linear velocity for the insertion task. Here, [0.1, 0.5] suggests a target velocity of 0.1 meters per second in the X direction and 0.5 meters per second in the Y direction.</span>
                 <span class="s2">&quot;ddX_d&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="c1"># This is a list of length 2, indicating the target accelerations of the robot end-effector in the X and Y directions during the insertion action. It specifies the desired linear acceleration for the insertion task. For instance, [0.5, 1] implies a target acceleration of 0.5 meters per second squared in the X direction and 1 meter per second squared in the Y direction.</span>
@@ -309,6 +312,7 @@
         <span class="s2">&quot;control&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;control_mode&quot;</span><span class="p">:</span> <span class="mi">0</span>
         <span class="p">},</span>
+        <span class="c1"># user: Limited conditions to determine whether the Insertion execution is successful, such as position and velocity tolerances, and maximum contact forces</span>
         <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;env_X&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.002</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span> <span class="c1"># This parameter is a list of length 6, representing the environmental conditions related to position in the X, Y, and Z directions. It specifies the position tolerances or variations allowed in the environment. For example, [0.01, 0.01, 0.002, 0.05, 0.05, 0.05] indicates tolerance values of 0.01 meters in the X and Y directions, 0.002 meters in the Z direction, and 0.05 meters for rotation.</span>
             <span class="s2">&quot;env_dX&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">],</span> <span class="c1"># This parameter is a list of length 6, similar to env_X, but it represents the environmental conditions related to velocity. It specifies the allowed velocity variations or tolerances in the environment. For instance, [0.001, 0.001, 0.001, 0.005, 0.005, 0.005] suggests velocity tolerance values of 0.001 meters per second in the X, Y, and Z directions, and 0.005 meters per second for rotation.</span>
@@ -425,13 +429,13 @@
 
 
 <div class="viewcode-block" id="Insertion"><a class="viewcode-back" href="../test_insertion.html#test_insertion.Insertion">[docs]</a><span class="k">class</span> <span class="nc">Insertion</span><span class="p">:</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#a = None</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">object_id</span><span class="o">=</span><span class="s2">&quot;obj1&quot;</span><span class="p">):</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">robot</span> <span class="o">=</span> <span class="n">robot</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">object_id</span> <span class="o">=</span> <span class="n">object_id</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">time_max</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># 默认值</span>
-        <span class="c1"># 如果需要，为p2和其他参数定义默认值</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">time_max</span> <span class="o">=</span> <span class="mi">10</span>  
+        
       <span class="bp">self</span><span class="o">.</span><span class="n">search_a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">search_f</span> <span class="o">=</span>  <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">search_phi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
@@ -439,6 +443,7 @@
       <span class="bp">self</span><span class="o">.</span><span class="n">f_push</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">env_X</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.002</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">F_ext_contact</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">prepared</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># New attribute to track whether prepare has been executed</span>
     
     <span class="c1">#First run the prepare function to set the initial state of the robot</span>
 <div class="viewcode-block" id="Insertion.prepare"><a class="viewcode-back" href="../test_insertion.html#test_insertion.Insertion.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">robot</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">approach</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">obj1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span><span class="n">container</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
@@ -450,11 +455,13 @@
         <span class="n">teach_location</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;obj1&quot;</span><span class="p">)</span>
         
         <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please move the robot to the container position and press Enter to continue...&quot;</span><span class="p">)</span>
-        <span class="n">teach_location</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;container&quot;</span><span class="p">)</span></div>
+        <span class="n">teach_location</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;container&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prepared</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prepare method has been executed.&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Insertion.modify_time"><a class="viewcode-back" href="../test_insertion.html#test_insertion.Insertion.modify_time">[docs]</a>    <span class="k">def</span> <span class="nf">modify_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_max</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">time_max</span> <span class="o">=</span> <span class="n">time_max</span></div>
-     <span class="c1"># print(f&quot;修改后的最大时间为：{self.time_max}&quot;)</span>
+    
     
 <div class="viewcode-block" id="Insertion.modify_search_amplitudes"><a class="viewcode-back" href="../test_insertion.html#test_insertion.Insertion.modify_search_amplitudes">[docs]</a>    <span class="k">def</span> <span class="nf">modify_search_amplitudes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">search_a</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">search_a</span> <span class="o">=</span> <span class="n">search_a</span></div>
@@ -484,6 +491,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">K_x</span> <span class="o">=</span> <span class="n">K_x</span></div>
 
 <div class="viewcode-block" id="Insertion.execute"><a class="viewcode-back" href="../test_insertion.html#test_insertion.Insertion.execute">[docs]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Check if prepare has been executed before proceeding with any other logic</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepared</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Please execute the prepare method before executing.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="c1"># Content of the original execute method</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Executing the task...&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">call_method</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;get_state&quot;</span><span class="p">))</span>
         <span class="n">call_method</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;set_grasped_object&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;object&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_id</span><span class="p">})</span>
         <span class="n">content</span> <span class="o">=</span> <span class="p">{</span>
@@ -541,15 +554,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Result：&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">result</span></div></div>
     
-<span class="c1">#def execute():</span>
-   <span class="c1"># insertion_instance = Insertion(robot, &quot;obj1&quot;)</span>
-    <span class="c1">#insertion_instance.execute()</span>
-    <span class="c1"># print(&quot;全局execute函数调用完成&quot;)</span>
 
-    <span class="c1">#def modify_time(time_max):</span>
-     <span class="c1">#   insertion_instance = Insertion(robot, &quot;obj1&quot;)</span>
-      <span class="c1">#  insertion_instance.modify_time(time_max)</span>
-        <span class="c1"># print(&quot;全局modify_time函数调用完成&quot;)</span>
 </pre></div>
 
            </div>
