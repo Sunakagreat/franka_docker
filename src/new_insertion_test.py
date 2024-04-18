@@ -324,3 +324,26 @@ def extract_skill():
     result = t.wait()
     print("Result: " + str(result))
     
+class Insertion:
+    a = None
+
+
+    def prepare(self):
+        pass
+
+    def modify_time(self, time_max):
+     result = insertion(time_max)  # 调用修改后的 insertion 函数，并传递 time_max
+     return result
+        
+
+    def modify_lissajous(self):
+        pass
+
+    def modify_succ_condition(self):
+        pass
+
+    def modify_stiffness(self):
+        pass
+
+    def execute(self):
+        pass

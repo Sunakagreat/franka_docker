@@ -1,7 +1,21 @@
 gripper module
 ==============
 
+<<<<<<< HEAD
+<<<<<<<< HEAD:docs/_build/html/_sources/gripper.rst.txt
 .. automodule:: gripper
     :members:
     :undoc-members:
     :show-inheritance:
+========
+.. automodule:: echo
+   :members:
+   :undoc-members:
+   :show-inheritance:
+>>>>>>>> 6ea3317de11b10319c8330fdb2b27ea118d783ae:docs/_build/html/_sources/echo.rst.txt
+=======
+.. automodule:: gripper
+   :members:
+   :undoc-members:
+   :show-inheritance:
+>>>>>>> 6ea3317de11b10319c8330fdb2b27ea118d783ae

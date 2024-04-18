@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>moving module &mdash; pymios 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=359c27e9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="new_insertion_test module" href="new_insertion_test.html" />
+    <link rel="prev" title="gripper module" href="gripper.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            pymios
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="connection_test.html">connection_test module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="echo.html">echo module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gear.html">gear module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gripper.html">gripper module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">moving module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#moving.move_to_cart"><code class="docutils literal notranslate"><span class="pre">move_to_cart()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#moving.move_to_joint"><code class="docutils literal notranslate"><span class="pre">move_to_joint()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#moving.move_to_location"><code class="docutils literal notranslate"><span class="pre">move_to_location()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#moving.teach_location"><code class="docutils literal notranslate"><span class="pre">teach_location()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#moving.teach_location_with_pause"><code class="docutils literal notranslate"><span class="pre">teach_location_with_pause()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#moving.test_move_to_cart"><code class="docutils literal notranslate"><span class="pre">test_move_to_cart()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#moving.test_robot_movement"><code class="docutils literal notranslate"><span class="pre">test_robot_movement()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="new_insertion_test.html">new_insertion_test module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="task.html">task module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_insertion.html">test_insertion module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ws_client.html">ws_client module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pymios</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">src</a></li>
+      <li class="breadcrumb-item active">moving module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/moving.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-moving">
+<span id="moving-module"></span><h1>moving module<a class="headerlink" href="#module-moving" title="Permalink to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="moving.move_to_cart">
+<span class="sig-prename descclassname"><span class="pre">moving.</span></span><span class="sig-name descname"><span class="pre">move_to_cart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moving.html#move_to_cart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moving.move_to_cart" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moving.move_to_joint">
+<span class="sig-prename descclassname"><span class="pre">moving.</span></span><span class="sig-name descname"><span class="pre">move_to_joint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_g</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moving.html#move_to_joint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moving.move_to_joint" title="Permalink to this definition"></a></dt>
+<dd><p>Move the robot to a specified joint configuration.</p>
+<p>Parameters:
+- robot (str): The identifier or name of the robot.
+- q_g (list): The target joint configuration.</p>
+<p>Returns:
+The result of the movement operation.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moving.move_to_location">
+<span class="sig-prename descclassname"><span class="pre">moving.</span></span><span class="sig-name descname"><span class="pre">move_to_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moving.html#move_to_location"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moving.move_to_location" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot</strong> (<em>str</em>) – The robot object that will perform the movement.</p></li>
+<li><p><strong>location</strong> (<em>str</em>) – The name or identifier of the target location.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moving.teach_location">
+<span class="sig-prename descclassname"><span class="pre">moving.</span></span><span class="sig-name descname"><span class="pre">teach_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moving.html#teach_location"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moving.teach_location" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot</strong> (<em>str</em>) – The robot object that will be taught the location.</p></li>
+<li><p><strong>location</strong> (<em>str</em>) – The name or identifier of the location to be taught.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moving.teach_location_with_pause">
+<span class="sig-prename descclassname"><span class="pre">moving.</span></span><span class="sig-name descname"><span class="pre">teach_location_with_pause</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moving.html#teach_location_with_pause"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moving.teach_location_with_pause" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moving.test_move_to_cart">
+<span class="sig-prename descclassname"><span class="pre">moving.</span></span><span class="sig-name descname"><span class="pre">test_move_to_cart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moving.html#test_move_to_cart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moving.test_move_to_cart" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moving.test_robot_movement">
+<span class="sig-prename descclassname"><span class="pre">moving.</span></span><span class="sig-name descname"><span class="pre">test_robot_movement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moving.html#test_robot_movement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moving.test_robot_movement" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gripper.html" class="btn btn-neutral float-left" title="gripper module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="new_insertion_test.html" class="btn btn-neutral float-right" title="new_insertion_test module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, yansong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
