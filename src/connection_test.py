@@ -56,7 +56,7 @@ def get_EE_pose(robot="localhost"):
     # Extract the end effector pose from the robot state
     ee_pose = robot_state.get('result', {}).get('O_T_EE', [])
     ee_array = np.array(ee_pose)
-    ee_array.reshape([4.4])
+    ee_array.reshape([4,4])
 
     return ee_array.transpose()
 
@@ -79,7 +79,7 @@ def get_joint_state(robot="localhost"):
 
     return joint_state
 
-def lock_robot(robot="localhost"):
+def lock_robot_gripper(robot="localhost"):
     """Lock the robot_gripper.
 
     :param robot: The hostname or IP address of the robot, defaults to "localhost"
@@ -89,7 +89,7 @@ def lock_robot(robot="localhost"):
     """
     return call_method(robot, 12000, "lock_brakes")
 
-def unlock_robot(robot="localhost"):
+def unlock_robot_gripper(robot="localhost"):
     """Unlock the robot_gripper.
 
     :param robot: The hostname or IP address of the robot, defaults to "localhost"
