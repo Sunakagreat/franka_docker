@@ -1,6 +1,7 @@
 from task import *
 import time
 import math
+import numpy as np
 
 # doc sphinx
 
@@ -48,14 +49,16 @@ def get_EE_pose(robot="localhost"):
     :type robot: str, optional
 
     :return: The transformation matrix or pose of the end effector.
-    :rtype: list
+    :rtype: 4*4 np matrix
     """
     robot_state = get_robot_state(robot)
     
     # Extract the end effector pose from the robot state
     ee_pose = robot_state.get('result', {}).get('O_T_EE', [])
+    ee_array = np.array(ee_pose)
+    ee_array.reshape([4.4])
 
-    return ee_pose
+    return ee_array.transpose()
 
     
 def get_joint_state(robot="localhost"):
