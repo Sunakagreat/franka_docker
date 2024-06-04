@@ -5,32 +5,9 @@ import time
 import math
 
 
-# robot = "10.157.175.17"
+
 robot = "localhost"
    
-initJ =  [1.6805736406158316,
-   -0.7780998814026686,
-   -0.18556492468223312,
-   -2.4818779002068383,
-   -0.1630406865146425,
-   1.9203671494023304,
-   0.7846937289967224]
-   
-appJ = [1.046577663283599,
-   0.5408990772481549,
-   -0.15745039685756726,
-   -1.8918086455997665,
-   -0.024037218966209112,
-   2.4770484238137676,
-   0.6262800398601426]
-   
-pickJ = [1.62521114151198,
-   -0.17855889359949387,
-   0.5047374598854466,
-   -2.33690645769903,
-   0.18616158796681298,
-   2.207514072974523,
-   0.7601201489350046]
 
 def grasp(width, force = 0.1):
 
@@ -80,29 +57,6 @@ def move_gripper(width):
     }
     return call_method(robot, 12000, "move_gripper", payload)
 
-def pick():
-    #move_to_location(robot, "pre0")
-    moveJ(initJ)
-    move_gripper(0.0015)
-    moveJ(pickJ)
-
-    #
-    moveJ(pickJ)
-    move_to_location(robot, "pre1")
-    move_to_location(robot, "pre2")
-    grasp(0.005)
-    call_method(robot, 12000, "set_grasped_object", {"object": "ring"})
-    call_method(robot, 12000, "set_grasped_object", {"object": "ring"})
-    time.sleep(0.2)
-    
-    move_to_location(robot, "pre1")
-    #move_to_location(robot, "pre0")
-    moveJ(initJ)
-    moveJ([0.9007378674889246,   0.4424676128353988,   -0.20733402558702654,   -2.1164788800130077,   0.17233900280558392,   2.543009564002355,   1.3696695665589578])
-    #move_to_location(robot, "app1")
-    
-    # time.sleep(3)
-    # move_gripper(0.004)
 
 def modify_taught_pose(x, y, z, name:str):
     
@@ -152,8 +106,12 @@ def moveJ(q_g):
         }
         return start_task_and_wait(robot, "MoveToJointPose", parameters, False)
 
+container = teach_location("localhost", "container")
+approach = teach_location("localhost", "approach")
+obj1 = teach_location("localhost", "obj1")
+time_max = 10  
 
-def insertion():
+def insertion(container, approach, obj1, time_max):
     """
     Executes an insertion task with the robot.
 
@@ -187,19 +145,22 @@ def insertion():
     Raises:
         Any: Any exceptions raised during task execution.
     """
+
+    container = "container"
+    approach = "approach"
+    obj1 = "obj1"
     print(call_method(robot, 12000, "get_state"))
-    call_method(robot, 12000, "set_grasped_object", {"object": "obj1"})
+    call_method(robot, 12000, "set_grasped_object", {"object": obj1})
     content = {
         "skill": {
             "objects": {
-                # "Container": "hole",
-                # "Approach": "app1",
-                # "Insertable": "hex1"
-                "Container": "container",
-                "Approach": "approach",
-                "Insertable": "obj1"                
+          
+                "Container": container,
+                "Approach": approach,
+                "Insertable": obj1                
             },
-            "time_max": 10,
+            
+            "time_max": time_max,
             
 
             # p0: the first mp, indicating the move_to_pose "Approach"
@@ -254,17 +215,15 @@ def insertion():
     print("Result: " + str(result))
     return result
 
-def modify_app1(x = 0.417140386890134, y = 0.4047956531460382):
-    print([x,y])
-    return modify_taught_pose(x, y,0.04859681927176112, "app1")
 
-def modify_housing(x = 0.417140386890134, y = 0.4047956531460382):
-    return modify_taught_pose(x, y, 0.015098423457252558, "housing")
+
+
+
 
 def extract():
     move_gripper(0.002)
     time.sleep(0.5)
-    gripper(0.0005)
+    move_gripper(0.0005)
     teach_location(robot, "above")
     a = call_method(robot, 12000, "get_state")
     x = a["result"]['O_T_EE'][-4]
@@ -274,59 +233,25 @@ def extract():
     print('Housing pose:', [x,y])
     move_to_location(robot, "above")
 
-def tilt_back_wall():
-    teach_location(robot, "xxx")
-    a = call_method(robot, 12000, "get_state")
-    x = a["result"]['O_T_EE'][-4]
-    y = a["result"]['O_T_EE'][-3]
-    z = a["result"]['O_T_EE'][-2] 
-    payload = {
-        "object": 'xxx',
-        "data": {
-            "x": x,
-            "y": y,
-            "z": z,
-            #"R": [0, 1, 0, 0, 0, 1, 1, 0, 0],
-            "R": [0, 0, 1, 1, 0, 0, 0, 1, 0],
-        },
-    }
-    # call_method(robot, 12000, "set_partial_object_data", payload)
-    
-    # move_to_location(robot, "xxx")
-    
-  
-    
 
-def pick_and_insert():
-    time.sleep(3)
-    pick()
-    insertion()
-    time.sleep(1)
-    extract()
-    moveJ(initJ)
 
-def end():
-    extract()
-    moveJ(initJ)
 
-def in_100():
-    for i in range(100):
-        insertion()
-        time.sleep(0.5)
-        print("------------------------- ", i, " ---------------------")
-        
-def extract_skill():
+def extract_skill(container, approach, obj1, time_max):
+    container = "container"
+    approach = "approach"
+    obj1 = "obj1"
+   
     extraction_context = {
         "skill": {
             "objects": {
-                "Container": "hole",
-                "ExtractTo": "app1",
-                "Extractable": "hex1"
+                "Container": container,
+                "ExtractTo": approach,
+                "Extractable": obj1
             },
-            "time_max": 10,
+            "time_max": time_max,
             "p0": {
-                "search_a": [0, 0, 0, 0, 0, 0],
-                "search_f": [0, 0, 0, 0, 0, 0],
+                "search_a": [4, 6, 15, 0, 0, 0],
+                "search_f": [1.2, 1.2, 0, 1.2, 1, 0],
                 "K_x": [1500, 1500, 1500, 150, 150, 150],
                 "dX_d": [0.1, 0.5],
                 "ddX_d": [0.5, 1]
@@ -371,18 +296,25 @@ class Insertion:
       self.env_X = [0.01, 0.01, 0.002, 0.05, 0.05, 0.05]
       self.F_ext_contact = [2.0, 1.0]
       self.prepared = False  # New attribute to track whether prepare has been executed
-    
+    #   self.content = s
+
+  
     #First run the prepare function to set the initial state of the robot
-    def prepare(self,robot: str, approach: str, obj1: str,container: str):
+    def prepare(self,robot: str, obj1: str, approach: str,container: str):
 
-        input("Please move the robot to the approach position and press Enter to continue...")
-        teach_location("localhost", "approach")
-
+        obj1 = input("Enter your taught pose name for obj1: ")
         input("Please move the robot to the object position and press Enter to continue...")
-        teach_location("localhost", "obj1")
+        teach_location("localhost", obj1)
+
+        approach = input("Enter your taught pose name for approach: ")
+        input("Please move the robot to the approach position and press Enter to continue...")
+        teach_location("localhost", approach)
         
+        
+        container = input("Enter your taught pose name for container: ")
         input("Please move the robot to the container position and press Enter to continue...")
-        teach_location("localhost", "container")
+        teach_location("localhost", container)
+
         self.prepared = True
         print("Prepare method has been executed.")
 
@@ -416,6 +348,41 @@ class Insertion:
     
     def modify_stiffness(self,K_x):
         self.K_x = K_x
+
+    def save_to_json(self, file_path):
+        data = {
+            "robot": self.robot,
+            "object_id": self.object_id,
+            "time_max": self.time_max,
+            "search_a": self.search_a,
+            "search_f": self.search_f,
+            "search_phi": self.search_phi,
+            "K_x": self.K_x,
+            "f_push": self.f_push,
+            "env_X": self.env_X,
+            "F_ext_contact": self.F_ext_contact,
+            #"prepared": self.prepared
+        }
+        with open(file_path, 'w') as json_file:
+            json.dump(data, json_file)
+        print(f"Data saved to {file_path}")
+
+    def load_from_json(self, file_path):
+        with open(file_path, 'r') as json_file:
+            data = json.load(json_file)
+            self.robot = data["robot"]
+            self.object_id = data["object_id"]
+            self.time_max = data["time_max"]
+            self.search_a = data["search_a"]
+            self.search_f = data["search_f"]
+            self.search_phi = data["search_phi"]
+            self.K_x = data["K_x"]
+            self.f_push = data["f_push"]
+            self.env_X = data["env_X"]
+            self.F_ext_contact = data["F_ext_contact"]
+            #self.prepared = data["prepared"]
+        print(f"Data loaded from {file_path}")
+
 
     def execute(self):
         # Check if prepare has been executed before proceeding with any other logic
@@ -481,4 +448,5 @@ class Insertion:
         print("Result：", str(result))
         return result
     
+
 

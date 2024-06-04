@@ -78,32 +78,9 @@
 <span class="kn">import</span> <span class="nn">math</span>
 
 
-<span class="c1"># robot = &quot;10.157.175.17&quot;</span>
+
 <span class="n">robot</span> <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span>
    
-<span class="n">initJ</span> <span class="o">=</span>  <span class="p">[</span><span class="mf">1.6805736406158316</span><span class="p">,</span>
-   <span class="o">-</span><span class="mf">0.7780998814026686</span><span class="p">,</span>
-   <span class="o">-</span><span class="mf">0.18556492468223312</span><span class="p">,</span>
-   <span class="o">-</span><span class="mf">2.4818779002068383</span><span class="p">,</span>
-   <span class="o">-</span><span class="mf">0.1630406865146425</span><span class="p">,</span>
-   <span class="mf">1.9203671494023304</span><span class="p">,</span>
-   <span class="mf">0.7846937289967224</span><span class="p">]</span>
-   
-<span class="n">appJ</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.046577663283599</span><span class="p">,</span>
-   <span class="mf">0.5408990772481549</span><span class="p">,</span>
-   <span class="o">-</span><span class="mf">0.15745039685756726</span><span class="p">,</span>
-   <span class="o">-</span><span class="mf">1.8918086455997665</span><span class="p">,</span>
-   <span class="o">-</span><span class="mf">0.024037218966209112</span><span class="p">,</span>
-   <span class="mf">2.4770484238137676</span><span class="p">,</span>
-   <span class="mf">0.6262800398601426</span><span class="p">]</span>
-   
-<span class="n">pickJ</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.62521114151198</span><span class="p">,</span>
-   <span class="o">-</span><span class="mf">0.17855889359949387</span><span class="p">,</span>
-   <span class="mf">0.5047374598854466</span><span class="p">,</span>
-   <span class="o">-</span><span class="mf">2.33690645769903</span><span class="p">,</span>
-   <span class="mf">0.18616158796681298</span><span class="p">,</span>
-   <span class="mf">2.207514072974523</span><span class="p">,</span>
-   <span class="mf">0.7601201489350046</span><span class="p">]</span>
 
 <div class="viewcode-block" id="grasp"><a class="viewcode-back" href="../test_insertion.html#test_insertion.grasp">[docs]</a><span class="k">def</span> <span class="nf">grasp</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">force</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">):</span>
 
@@ -153,29 +130,6 @@
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">call_method</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;move_gripper&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="pick"><a class="viewcode-back" href="../test_insertion.html#test_insertion.pick">[docs]</a><span class="k">def</span> <span class="nf">pick</span><span class="p">():</span>
-    <span class="c1">#move_to_location(robot, &quot;pre0&quot;)</span>
-    <span class="n">moveJ</span><span class="p">(</span><span class="n">initJ</span><span class="p">)</span>
-    <span class="n">move_gripper</span><span class="p">(</span><span class="mf">0.0015</span><span class="p">)</span>
-    <span class="n">moveJ</span><span class="p">(</span><span class="n">pickJ</span><span class="p">)</span>
-
-    <span class="c1">#</span>
-    <span class="n">moveJ</span><span class="p">(</span><span class="n">pickJ</span><span class="p">)</span>
-    <span class="n">move_to_location</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;pre1&quot;</span><span class="p">)</span>
-    <span class="n">move_to_location</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;pre2&quot;</span><span class="p">)</span>
-    <span class="n">grasp</span><span class="p">(</span><span class="mf">0.005</span><span class="p">)</span>
-    <span class="n">call_method</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;set_grasped_object&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;object&quot;</span><span class="p">:</span> <span class="s2">&quot;ring&quot;</span><span class="p">})</span>
-    <span class="n">call_method</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;set_grasped_object&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;object&quot;</span><span class="p">:</span> <span class="s2">&quot;ring&quot;</span><span class="p">})</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
-    
-    <span class="n">move_to_location</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;pre1&quot;</span><span class="p">)</span>
-    <span class="c1">#move_to_location(robot, &quot;pre0&quot;)</span>
-    <span class="n">moveJ</span><span class="p">(</span><span class="n">initJ</span><span class="p">)</span>
-    <span class="n">moveJ</span><span class="p">([</span><span class="mf">0.9007378674889246</span><span class="p">,</span>   <span class="mf">0.4424676128353988</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.20733402558702654</span><span class="p">,</span>   <span class="o">-</span><span class="mf">2.1164788800130077</span><span class="p">,</span>   <span class="mf">0.17233900280558392</span><span class="p">,</span>   <span class="mf">2.543009564002355</span><span class="p">,</span>   <span class="mf">1.3696695665589578</span><span class="p">])</span></div>
-    <span class="c1">#move_to_location(robot, &quot;app1&quot;)</span>
-    
-    <span class="c1"># time.sleep(3)</span>
-    <span class="c1"># move_gripper(0.004)</span>
 
 <div class="viewcode-block" id="modify_taught_pose"><a class="viewcode-back" href="../test_insertion.html#test_insertion.modify_taught_pose">[docs]</a><span class="k">def</span> <span class="nf">modify_taught_pose</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span>
@@ -225,8 +179,12 @@
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">start_task_and_wait</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;MoveToJointPose&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
 
+<span class="n">container</span> <span class="o">=</span> <span class="n">teach_location</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;container&quot;</span><span class="p">)</span>
+<span class="n">approach</span> <span class="o">=</span> <span class="n">teach_location</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;approach&quot;</span><span class="p">)</span>
+<span class="n">obj1</span> <span class="o">=</span> <span class="n">teach_location</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;obj1&quot;</span><span class="p">)</span>
+<span class="n">time_max</span> <span class="o">=</span> <span class="mi">10</span>  
 
-<div class="viewcode-block" id="insertion"><a class="viewcode-back" href="../test_insertion.html#test_insertion.insertion">[docs]</a><span class="k">def</span> <span class="nf">insertion</span><span class="p">():</span>
+<div class="viewcode-block" id="insertion"><a class="viewcode-back" href="../test_insertion.html#test_insertion.insertion">[docs]</a><span class="k">def</span> <span class="nf">insertion</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">approach</span><span class="p">,</span> <span class="n">obj1</span><span class="p">,</span> <span class="n">time_max</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Executes an insertion task with the robot.</span>
 
@@ -260,19 +218,22 @@
 <span class="sd">    Raises:</span>
 <span class="sd">        Any: Any exceptions raised during task execution.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">container</span> <span class="o">=</span> <span class="s2">&quot;container&quot;</span>
+    <span class="n">approach</span> <span class="o">=</span> <span class="s2">&quot;approach&quot;</span>
+    <span class="n">obj1</span> <span class="o">=</span> <span class="s2">&quot;obj1&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">call_method</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;get_state&quot;</span><span class="p">))</span>
-    <span class="n">call_method</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;set_grasped_object&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;object&quot;</span><span class="p">:</span> <span class="s2">&quot;obj1&quot;</span><span class="p">})</span>
+    <span class="n">call_method</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;set_grasped_object&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;object&quot;</span><span class="p">:</span> <span class="n">obj1</span><span class="p">})</span>
     <span class="n">content</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;skill&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;objects&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="c1"># &quot;Container&quot;: &quot;hole&quot;,</span>
-                <span class="c1"># &quot;Approach&quot;: &quot;app1&quot;,</span>
-                <span class="c1"># &quot;Insertable&quot;: &quot;hex1&quot;</span>
-                <span class="s2">&quot;Container&quot;</span><span class="p">:</span> <span class="s2">&quot;container&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;Approach&quot;</span><span class="p">:</span> <span class="s2">&quot;approach&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;Insertable&quot;</span><span class="p">:</span> <span class="s2">&quot;obj1&quot;</span>                
+          
+                <span class="s2">&quot;Container&quot;</span><span class="p">:</span> <span class="n">container</span><span class="p">,</span>
+                <span class="s2">&quot;Approach&quot;</span><span class="p">:</span> <span class="n">approach</span><span class="p">,</span>
+                <span class="s2">&quot;Insertable&quot;</span><span class="p">:</span> <span class="n">obj1</span>                
             <span class="p">},</span>
-            <span class="s2">&quot;time_max&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+            
+            <span class="s2">&quot;time_max&quot;</span><span class="p">:</span> <span class="n">time_max</span><span class="p">,</span>
             
 
             <span class="c1"># p0: the first mp, indicating the move_to_pose &quot;Approach&quot;</span>
@@ -327,17 +288,15 @@
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Result: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">result</span></div>
 
-<div class="viewcode-block" id="modify_app1"><a class="viewcode-back" href="../test_insertion.html#test_insertion.modify_app1">[docs]</a><span class="k">def</span> <span class="nf">modify_app1</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.417140386890134</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">0.4047956531460382</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">modify_taught_pose</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span><span class="mf">0.04859681927176112</span><span class="p">,</span> <span class="s2">&quot;app1&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="modify_housing"><a class="viewcode-back" href="../test_insertion.html#test_insertion.modify_housing">[docs]</a><span class="k">def</span> <span class="nf">modify_housing</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.417140386890134</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">0.4047956531460382</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">modify_taught_pose</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mf">0.015098423457252558</span><span class="p">,</span> <span class="s2">&quot;housing&quot;</span><span class="p">)</span></div>
+
+
+
 
 <div class="viewcode-block" id="extract"><a class="viewcode-back" href="../test_insertion.html#test_insertion.extract">[docs]</a><span class="k">def</span> <span class="nf">extract</span><span class="p">():</span>
     <span class="n">move_gripper</span><span class="p">(</span><span class="mf">0.002</span><span class="p">)</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">gripper</span><span class="p">(</span><span class="mf">0.0005</span><span class="p">)</span>
+    <span class="n">move_gripper</span><span class="p">(</span><span class="mf">0.0005</span><span class="p">)</span>
     <span class="n">teach_location</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;above&quot;</span><span class="p">)</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">call_method</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;get_state&quot;</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;result&quot;</span><span class="p">][</span><span class="s1">&#39;O_T_EE&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
@@ -347,59 +306,25 @@
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Housing pose:&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">])</span>
     <span class="n">move_to_location</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;above&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="tilt_back_wall"><a class="viewcode-back" href="../test_insertion.html#test_insertion.tilt_back_wall">[docs]</a><span class="k">def</span> <span class="nf">tilt_back_wall</span><span class="p">():</span>
-    <span class="n">teach_location</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;xxx&quot;</span><span class="p">)</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">call_method</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;get_state&quot;</span><span class="p">)</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;result&quot;</span><span class="p">][</span><span class="s1">&#39;O_T_EE&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;result&quot;</span><span class="p">][</span><span class="s1">&#39;O_T_EE&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
-    <span class="n">z</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;result&quot;</span><span class="p">][</span><span class="s1">&#39;O_T_EE&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> 
-    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;object&quot;</span><span class="p">:</span> <span class="s1">&#39;xxx&#39;</span><span class="p">,</span>
-        <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span>
-            <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span>
-            <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="n">z</span><span class="p">,</span>
-            <span class="c1">#&quot;R&quot;: [0, 1, 0, 0, 0, 1, 1, 0, 0],</span>
-            <span class="s2">&quot;R&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="p">},</span>
-    <span class="p">}</span></div>
-    <span class="c1"># call_method(robot, 12000, &quot;set_partial_object_data&quot;, payload)</span>
-    
-    <span class="c1"># move_to_location(robot, &quot;xxx&quot;)</span>
-    
-  
-    
 
-<div class="viewcode-block" id="pick_and_insert"><a class="viewcode-back" href="../test_insertion.html#test_insertion.pick_and_insert">[docs]</a><span class="k">def</span> <span class="nf">pick_and_insert</span><span class="p">():</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">pick</span><span class="p">()</span>
-    <span class="n">insertion</span><span class="p">()</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">extract</span><span class="p">()</span>
-    <span class="n">moveJ</span><span class="p">(</span><span class="n">initJ</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="end"><a class="viewcode-back" href="../test_insertion.html#test_insertion.end">[docs]</a><span class="k">def</span> <span class="nf">end</span><span class="p">():</span>
-    <span class="n">extract</span><span class="p">()</span>
-    <span class="n">moveJ</span><span class="p">(</span><span class="n">initJ</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="in_100"><a class="viewcode-back" href="../test_insertion.html#test_insertion.in_100">[docs]</a><span class="k">def</span> <span class="nf">in_100</span><span class="p">():</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-        <span class="n">insertion</span><span class="p">()</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------------------- &quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot; ---------------------&quot;</span><span class="p">)</span></div>
-        
-<div class="viewcode-block" id="extract_skill"><a class="viewcode-back" href="../test_insertion.html#test_insertion.extract_skill">[docs]</a><span class="k">def</span> <span class="nf">extract_skill</span><span class="p">():</span>
+<div class="viewcode-block" id="extract_skill"><a class="viewcode-back" href="../test_insertion.html#test_insertion.extract_skill">[docs]</a><span class="k">def</span> <span class="nf">extract_skill</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">approach</span><span class="p">,</span> <span class="n">obj1</span><span class="p">,</span> <span class="n">time_max</span><span class="p">):</span>
+    <span class="n">container</span> <span class="o">=</span> <span class="s2">&quot;container&quot;</span>
+    <span class="n">approach</span> <span class="o">=</span> <span class="s2">&quot;approach&quot;</span>
+    <span class="n">obj1</span> <span class="o">=</span> <span class="s2">&quot;obj1&quot;</span>
+   
     <span class="n">extraction_context</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;skill&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;objects&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;Container&quot;</span><span class="p">:</span> <span class="s2">&quot;hole&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;ExtractTo&quot;</span><span class="p">:</span> <span class="s2">&quot;app1&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;Extractable&quot;</span><span class="p">:</span> <span class="s2">&quot;hex1&quot;</span>
+                <span class="s2">&quot;Container&quot;</span><span class="p">:</span> <span class="n">container</span><span class="p">,</span>
+                <span class="s2">&quot;ExtractTo&quot;</span><span class="p">:</span> <span class="n">approach</span><span class="p">,</span>
+                <span class="s2">&quot;Extractable&quot;</span><span class="p">:</span> <span class="n">obj1</span>
             <span class="p">},</span>
-            <span class="s2">&quot;time_max&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="s2">&quot;time_max&quot;</span><span class="p">:</span> <span class="n">time_max</span><span class="p">,</span>
             <span class="s2">&quot;p0&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;search_a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-                <span class="s2">&quot;search_f&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="s2">&quot;search_a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="s2">&quot;search_f&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
                 <span class="s2">&quot;K_x&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">1500</span><span class="p">,</span> <span class="mi">1500</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span>
                 <span class="s2">&quot;dX_d&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
                 <span class="s2">&quot;ddX_d&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
@@ -444,18 +369,25 @@
       <span class="bp">self</span><span class="o">.</span><span class="n">env_X</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.002</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">F_ext_contact</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">prepared</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># New attribute to track whether prepare has been executed</span>
-    
+    <span class="c1">#   self.content = s</span>
+
+  
     <span class="c1">#First run the prepare function to set the initial state of the robot</span>
-<div class="viewcode-block" id="Insertion.prepare"><a class="viewcode-back" href="../test_insertion.html#test_insertion.Insertion.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">robot</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">approach</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">obj1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span><span class="n">container</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="Insertion.prepare"><a class="viewcode-back" href="../test_insertion.html#test_insertion.Insertion.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">robot</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">obj1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">approach</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span><span class="n">container</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 
-        <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please move the robot to the approach position and press Enter to continue...&quot;</span><span class="p">)</span>
-        <span class="n">teach_location</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;approach&quot;</span><span class="p">)</span>
-
+        <span class="n">obj1</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your taught pose name for obj1: &quot;</span><span class="p">)</span>
         <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please move the robot to the object position and press Enter to continue...&quot;</span><span class="p">)</span>
-        <span class="n">teach_location</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;obj1&quot;</span><span class="p">)</span>
+        <span class="n">teach_location</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">obj1</span><span class="p">)</span>
+
+        <span class="n">approach</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your taught pose name for approach: &quot;</span><span class="p">)</span>
+        <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please move the robot to the approach position and press Enter to continue...&quot;</span><span class="p">)</span>
+        <span class="n">teach_location</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">approach</span><span class="p">)</span>
         
+        
+        <span class="n">container</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your taught pose name for container: &quot;</span><span class="p">)</span>
         <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please move the robot to the container position and press Enter to continue...&quot;</span><span class="p">)</span>
-        <span class="n">teach_location</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;container&quot;</span><span class="p">)</span>
+        <span class="n">teach_location</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">container</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">prepared</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prepare method has been executed.&quot;</span><span class="p">)</span></div>
 
@@ -489,6 +421,41 @@
     
 <div class="viewcode-block" id="Insertion.modify_stiffness"><a class="viewcode-back" href="../test_insertion.html#test_insertion.Insertion.modify_stiffness">[docs]</a>    <span class="k">def</span> <span class="nf">modify_stiffness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">K_x</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">K_x</span> <span class="o">=</span> <span class="n">K_x</span></div>
+
+<div class="viewcode-block" id="Insertion.save_to_json"><a class="viewcode-back" href="../test_insertion.html#test_insertion.Insertion.save_to_json">[docs]</a>    <span class="k">def</span> <span class="nf">save_to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;robot&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="p">,</span>
+            <span class="s2">&quot;object_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_id</span><span class="p">,</span>
+            <span class="s2">&quot;time_max&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_max</span><span class="p">,</span>
+            <span class="s2">&quot;search_a&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_a</span><span class="p">,</span>
+            <span class="s2">&quot;search_f&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_f</span><span class="p">,</span>
+            <span class="s2">&quot;search_phi&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_phi</span><span class="p">,</span>
+            <span class="s2">&quot;K_x&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">K_x</span><span class="p">,</span>
+            <span class="s2">&quot;f_push&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_push</span><span class="p">,</span>
+            <span class="s2">&quot;env_X&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">env_X</span><span class="p">,</span>
+            <span class="s2">&quot;F_ext_contact&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">F_ext_contact</span><span class="p">,</span>
+            <span class="c1">#&quot;prepared&quot;: self.prepared</span>
+        <span class="p">}</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_file</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">json_file</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data saved to </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Insertion.load_from_json"><a class="viewcode-back" href="../test_insertion.html#test_insertion.Insertion.load_from_json">[docs]</a>    <span class="k">def</span> <span class="nf">load_from_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_file</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">json_file</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">robot</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;robot&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">object_id</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;object_id&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">time_max</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;time_max&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">search_a</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;search_a&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">search_f</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;search_f&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">search_phi</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;search_phi&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">K_x</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;K_x&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">f_push</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;f_push&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">env_X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;env_X&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">F_ext_contact</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;F_ext_contact&quot;</span><span class="p">]</span>
+            <span class="c1">#self.prepared = data[&quot;prepared&quot;]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data loaded from </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="Insertion.execute"><a class="viewcode-back" href="../test_insertion.html#test_insertion.Insertion.execute">[docs]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Check if prepare has been executed before proceeding with any other logic</span>
@@ -554,6 +521,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Result：&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">result</span></div></div>
     
+
 
 </pre></div>
 

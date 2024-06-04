@@ -58,6 +58,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">test_insertion module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#test_insertion.Insertion"><code class="docutils literal notranslate"><span class="pre">Insertion</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#test_insertion.Insertion.execute"><code class="docutils literal notranslate"><span class="pre">Insertion.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test_insertion.Insertion.load_from_json"><code class="docutils literal notranslate"><span class="pre">Insertion.load_from_json()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#test_insertion.Insertion.modify_F_ext_contact"><code class="docutils literal notranslate"><span class="pre">Insertion.modify_F_ext_contact()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#test_insertion.Insertion.modify_f_push"><code class="docutils literal notranslate"><span class="pre">Insertion.modify_f_push()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#test_insertion.Insertion.modify_lissajous"><code class="docutils literal notranslate"><span class="pre">Insertion.modify_lissajous()</span></code></a></li>
@@ -66,22 +67,16 @@
 <li class="toctree-l4"><a class="reference internal" href="#test_insertion.Insertion.modify_succ_condition"><code class="docutils literal notranslate"><span class="pre">Insertion.modify_succ_condition()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#test_insertion.Insertion.modify_time"><code class="docutils literal notranslate"><span class="pre">Insertion.modify_time()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#test_insertion.Insertion.prepare"><code class="docutils literal notranslate"><span class="pre">Insertion.prepare()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test_insertion.Insertion.save_to_json"><code class="docutils literal notranslate"><span class="pre">Insertion.save_to_json()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#test_insertion.end"><code class="docutils literal notranslate"><span class="pre">end()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test_insertion.extract"><code class="docutils literal notranslate"><span class="pre">extract()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test_insertion.extract_skill"><code class="docutils literal notranslate"><span class="pre">extract_skill()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test_insertion.grasp"><code class="docutils literal notranslate"><span class="pre">grasp()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#test_insertion.in_100"><code class="docutils literal notranslate"><span class="pre">in_100()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test_insertion.insertion"><code class="docutils literal notranslate"><span class="pre">insertion()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#test_insertion.modify_app1"><code class="docutils literal notranslate"><span class="pre">modify_app1()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#test_insertion.modify_housing"><code class="docutils literal notranslate"><span class="pre">modify_housing()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test_insertion.modify_taught_pose"><code class="docutils literal notranslate"><span class="pre">modify_taught_pose()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test_insertion.moveJ"><code class="docutils literal notranslate"><span class="pre">moveJ()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test_insertion.move_gripper"><code class="docutils literal notranslate"><span class="pre">move_gripper()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#test_insertion.pick"><code class="docutils literal notranslate"><span class="pre">pick()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#test_insertion.pick_and_insert"><code class="docutils literal notranslate"><span class="pre">pick_and_insert()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#test_insertion.tilt_back_wall"><code class="docutils literal notranslate"><span class="pre">tilt_back_wall()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="ws_client.html">ws_client module</a></li>
@@ -126,6 +121,11 @@
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="test_insertion.Insertion.load_from_json">
+<span class="sig-name descname"><span class="pre">load_from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_insertion.html#Insertion.load_from_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_insertion.Insertion.load_from_json" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="test_insertion.Insertion.modify_F_ext_contact">
 <span class="sig-name descname"><span class="pre">modify_F_ext_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F_ext_contact</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_insertion.html#Insertion.modify_F_ext_contact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_insertion.Insertion.modify_F_ext_contact" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -162,15 +162,15 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="test_insertion.Insertion.prepare">
-<span class="sig-name descname"><span class="pre">prepare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approach</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">container</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_insertion.html#Insertion.prepare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_insertion.Insertion.prepare" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">prepare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approach</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">container</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_insertion.html#Insertion.prepare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_insertion.Insertion.prepare" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test_insertion.Insertion.save_to_json">
+<span class="sig-name descname"><span class="pre">save_to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_insertion.html#Insertion.save_to_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_insertion.Insertion.save_to_json" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="test_insertion.end">
-<span class="sig-prename descclassname"><span class="pre">test_insertion.</span></span><span class="sig-name descname"><span class="pre">end</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_insertion.html#end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_insertion.end" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="test_insertion.extract">
@@ -179,7 +179,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="test_insertion.extract_skill">
-<span class="sig-prename descclassname"><span class="pre">test_insertion.</span></span><span class="sig-name descname"><span class="pre">extract_skill</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_insertion.html#extract_skill"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_insertion.extract_skill" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">test_insertion.</span></span><span class="sig-name descname"><span class="pre">extract_skill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">container</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approach</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_max</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_insertion.html#extract_skill"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_insertion.extract_skill" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -198,13 +198,8 @@ The parameters epsilon_inner and epsilon_outer define the precision of the grasp
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="test_insertion.in_100">
-<span class="sig-prename descclassname"><span class="pre">test_insertion.</span></span><span class="sig-name descname"><span class="pre">in_100</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_insertion.html#in_100"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_insertion.in_100" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="test_insertion.insertion">
-<span class="sig-prename descclassname"><span class="pre">test_insertion.</span></span><span class="sig-name descname"><span class="pre">insertion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_insertion.html#insertion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_insertion.insertion" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">test_insertion.</span></span><span class="sig-name descname"><span class="pre">insertion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">container</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approach</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_max</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_insertion.html#insertion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_insertion.insertion" title="Permalink to this definition"></a></dt>
 <dd><p>Executes an insertion task with the robot.</p>
 <p>This function performs an insertion task with the robot. It sets the grasped object of the robot to “obj1”,
 defines parameters for the insertion task, creates a Task object, adds the insertion skill to it, starts the task,
@@ -238,16 +233,6 @@ It indicates the time taken for task execution, where 7.084 seconds were spent o
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="test_insertion.modify_app1">
-<span class="sig-prename descclassname"><span class="pre">test_insertion.</span></span><span class="sig-name descname"><span class="pre">modify_app1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.417140386890134</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.4047956531460382</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_insertion.html#modify_app1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_insertion.modify_app1" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="test_insertion.modify_housing">
-<span class="sig-prename descclassname"><span class="pre">test_insertion.</span></span><span class="sig-name descname"><span class="pre">modify_housing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.417140386890134</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.4047956531460382</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_insertion.html#modify_housing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_insertion.modify_housing" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="test_insertion.modify_taught_pose">
@@ -290,21 +275,6 @@ The result of the gripper movement.</p>
 This function utilizes libranka to control the robot’s gripper, moving it to the specified width.
 The movement speed is set to 0.05 to ensure a controlled and gradual gripper motion.</p>
 </dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="test_insertion.pick">
-<span class="sig-prename descclassname"><span class="pre">test_insertion.</span></span><span class="sig-name descname"><span class="pre">pick</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_insertion.html#pick"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_insertion.pick" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="test_insertion.pick_and_insert">
-<span class="sig-prename descclassname"><span class="pre">test_insertion.</span></span><span class="sig-name descname"><span class="pre">pick_and_insert</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_insertion.html#pick_and_insert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_insertion.pick_and_insert" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="test_insertion.tilt_back_wall">
-<span class="sig-prename descclassname"><span class="pre">test_insertion.</span></span><span class="sig-name descname"><span class="pre">tilt_back_wall</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_insertion.html#tilt_back_wall"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_insertion.tilt_back_wall" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
 
 </section>
 
